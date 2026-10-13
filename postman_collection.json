@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "9a38f322-1d54-46b0-9b3f-e8b2ec01a7f0",
+		"name": "Compte Microservice API Collection",
+		"description": "Collection Postman pour tester les endpoints du micro-service de gestion des comptes bancaires (REST Controller, Spring Data REST, Projections, Swagger).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Web Service RESTful (/api/comptes)",
+			"item": [
+				{
+					"name": "GET Tous les comptes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/comptes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comptes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Compte par ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/comptes/{{compteId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comptes",
+								"{{compteId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Créer un compte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solde\": 75000.0,\n    \"currency\": \"MAD\",\n    \"type\": \"COURANT\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/comptes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comptes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Mettre à jour un compte",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"solde\": 92000.0,\n    \"currency\": \"EUR\",\n    \"type\": \"EPARGNE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/comptes/{{compteId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comptes",
+								"{{compteId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Supprimer un compte",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/comptes/{{compteId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comptes",
+								"{{compteId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Spring Data REST & Projections (/rest/comptes)",
+			"item": [
+				{
+					"name": "GET Spring Data REST - Tous les comptes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rest/comptes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rest",
+								"comptes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Projection p1 (id, solde, type)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rest/comptes?projection=p1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rest",
+								"comptes"
+							],
+							"query": [
+								{
+									"key": "projection",
+									"value": "p1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Projection p2 (id, solde, currency)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rest/comptes?projection=p2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rest",
+								"comptes"
+							],
+							"query": [
+								{
+									"key": "projection",
+									"value": "p2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Recherche par Type (COURANT)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rest/comptes/search/byType?t=COURANT",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rest",
+								"comptes",
+								"search",
+								"byType"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "COURANT"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Swagger & Documentation OpenAPI",
+			"item": [
+				{
+					"name": "GET OpenAPI Specification JSON",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/api-docs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "compteId",
+			"value": "replace-with-actual-id"
+		}
+	]
+}
